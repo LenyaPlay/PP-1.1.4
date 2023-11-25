@@ -27,7 +27,7 @@ public class UserDaoJDBCImpl implements UserDao {
                     "age TINYINT)";
             statement.execute(createTableIfNotExist);
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
         }
     }
 
@@ -37,7 +37,7 @@ public class UserDaoJDBCImpl implements UserDao {
         try (PreparedStatement preparedStatement = getConnection().prepareStatement(dropTableSQL)) {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
         }
     }
 
@@ -52,7 +52,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
         }
     }
 
@@ -65,7 +65,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
         }
     }
 
@@ -94,7 +94,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 }
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
         }
 
         return userList;
@@ -107,7 +107,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            System.out.println(e);
         }
     }
 }

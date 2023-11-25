@@ -17,8 +17,8 @@ public class Main {
              users) {
             System.out.println(user.toString());
         }
-        database.cleanUsersTable();
         database.dropUsersTable();
+        database.cleanUsersTable();
     }
     private static void addUserToDatabase(UserService database, String name, String lastName, byte age) {
         database.saveUser(name, lastName, age);
