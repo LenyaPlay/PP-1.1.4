@@ -21,10 +21,8 @@ public class Main {
         database.dropUsersTable();
     }
     private static void addUserToDatabase(UserService database, String name, String lastName, byte age) {
-        // Adding a user to the table
         database.saveUser(name, lastName, age);
 
-        // Displaying a message after the user is added
         System.out.println("User с именем – " + name + " добавлен в базу данных");
     }
 }
