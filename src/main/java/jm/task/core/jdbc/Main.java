@@ -1,4 +1,5 @@
 package jm.task.core.jdbc;
+
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
 
@@ -13,13 +14,13 @@ public class Main {
         addUserToDatabase(database, "name3", "lastname3", (byte) 20);
         addUserToDatabase(database, "name4", "lastname4", (byte) 25);
         var users = database.getAllUsers();
-        for (var user:
-             users) {
+        for (var user : users) {
             System.out.println(user.toString());
         }
-        database.dropUsersTable();
         database.cleanUsersTable();
+        database.dropUsersTable();
     }
+
     private static void addUserToDatabase(UserService database, String name, String lastName, byte age) {
         database.saveUser(name, lastName, age);
 
