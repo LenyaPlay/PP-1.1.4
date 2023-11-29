@@ -6,37 +6,48 @@ import java.sql.SQLException;
 
 public class Util {
     // реализуйте настройку соеденения с БД
-    private String url = "jdbc:mysql://localhost/danilkhaertdinov";
-    private String username = "root";
-    private String password = "root";
+    private static String url = "jdbc:mysql://localhost/danilkhaertdinov";
+    private static String username = "root";
+    private static String password = "root";
 
+    private Util() {
 
-    Connection connection = null;
+    }
 
-    public Connection getConnection() {
+    private static Connection connection = null;
+
+    public static Connection getConnection() {
         try {
-            if(connection != null && !connection.isClosed()) {
+            if (connection != null && !connection.isClosed()) {
                 return connection;
             }
         } catch (SQLException exception) {
             System.out.println("SQL Exception, trying create new connection: " + exception);
         }
 
-        try{
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
-            Connection connection = DriverManager.getConnection(url, username, password);
+            connection = DriverManager.getConnection(url, username, password);
+            connection.setAutoCommit(false);
             System.out.println("Connection to DB succesfull!");
-            this.connection = connection;
             return connection;
-        }
-        catch(Exception ex){
+        } catch (Exception e) {
             System.out.println("Connection failed...");
-
-            System.out.println(ex);
+            System.out.println(e);
         }
-        return null;
+        throw new RuntimeException();
     }
 
+    public static void closeConnection() {
+        if(connection != null) {
+            try {
+                connection.close();
+            } catch (SQLException e) {
+                System.out.println("Connection close failed, but i think is mean nothing:)...");
+                System.out.println(e);
+            }
+        }
+    }
 
 
 }

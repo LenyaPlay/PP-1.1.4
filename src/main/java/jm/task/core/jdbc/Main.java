@@ -2,6 +2,7 @@ package jm.task.core.jdbc;
 
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
+import jm.task.core.jdbc.util.Util;
 
 
 public class Main {
@@ -19,6 +20,7 @@ public class Main {
         }
         database.cleanUsersTable();
         database.dropUsersTable();
+        Util.closeConnection();
     }
 
     private static void addUserToDatabase(UserService database, String name, String lastName, byte age) {
