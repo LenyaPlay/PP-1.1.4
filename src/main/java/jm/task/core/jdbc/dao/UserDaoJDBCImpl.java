@@ -15,11 +15,7 @@ public class UserDaoJDBCImpl implements UserDao {
     @Override
     public void createUsersTable() {
         try (Statement statement = Util.getConnection().createStatement()) {
-            String createTableIfNotExist = "CREATE TABLE IF NOT EXISTS user (" +
-                    "id BIGINT PRIMARY KEY AUTO_INCREMENT," +
-                    "name VARCHAR(255) NOT NULL," +
-                    "lastName VARCHAR(255) NOT NULL," +
-                    "age TINYINT)";
+            String createTableIfNotExist = "CREATE TABLE IF NOT EXISTS user (" + "id BIGINT PRIMARY KEY AUTO_INCREMENT," + "name VARCHAR(255) NOT NULL," + "lastName VARCHAR(255) NOT NULL," + "age TINYINT)";
             statement.execute(createTableIfNotExist);
             Util.getConnection().commit();
         } catch (SQLException e) {
@@ -84,8 +80,7 @@ public class UserDaoJDBCImpl implements UserDao {
         List<User> userList = new ArrayList<>();
         String getAllUsersSQL = "SELECT * FROM user";
 
-        try (PreparedStatement preparedStatement = Util.getConnection().prepareStatement(getAllUsersSQL);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
+        try (PreparedStatement preparedStatement = Util.getConnection().prepareStatement(getAllUsersSQL); ResultSet resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");
