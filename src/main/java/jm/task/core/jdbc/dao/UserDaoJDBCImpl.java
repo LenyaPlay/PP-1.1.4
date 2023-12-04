@@ -3,8 +3,11 @@ package jm.task.core.jdbc.dao;
 import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.Util;
 
-import javax.swing.plaf.nimbus.State;
-import java.sql.*;
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +22,7 @@ public class UserDaoJDBCImpl implements UserDao {
             statement.execute(createTableIfNotExist);
             Util.getConnection().commit();
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -31,7 +34,7 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.executeUpdate();
             Util.getConnection().commit();
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -48,10 +51,10 @@ public class UserDaoJDBCImpl implements UserDao {
                 Util.getConnection().commit();
             } catch (SQLException e) {
                 Util.getConnection().rollback();
-                System.out.println(e);
+                e.printStackTrace();
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 
@@ -67,10 +70,10 @@ public class UserDaoJDBCImpl implements UserDao {
                 Util.getConnection().commit();
             } catch (SQLException e) {
                 Util.getConnection().rollback();
-                System.out.println(e);
+                e.printStackTrace();
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
     }
@@ -97,7 +100,7 @@ public class UserDaoJDBCImpl implements UserDao {
                 userList.add(user);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
 
 
@@ -113,10 +116,10 @@ public class UserDaoJDBCImpl implements UserDao {
                 Util.getConnection().commit();
             } catch (SQLException e) {
                 Util.getConnection().rollback();
-                System.out.println(e);
+                e.printStackTrace();
             }
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
 }
