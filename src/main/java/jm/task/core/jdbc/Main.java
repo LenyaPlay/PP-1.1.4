@@ -20,12 +20,11 @@ public class Main {
         }
         database.cleanUsersTable();
         database.dropUsersTable();
-        Util.closeConnection();
+        Util.closeAll();
     }
 
     private static void addUserToDatabase(UserService database, String name, String lastName, byte age) {
         database.saveUser(name, lastName, age);
-
         System.out.println("User с именем – " + name + " добавлен в базу данных");
     }
 }
